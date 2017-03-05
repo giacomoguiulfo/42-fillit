@@ -1,9 +1,10 @@
 NAME = fillit
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS += -Wall -Wextra -Werror
 
-SRC =
+SRC = read.c \
 
+INCLUDES = libft\libft.h
 
 OBJ = $(SRC:.c=.o)
 
@@ -18,7 +19,7 @@ $(OBJ): %.o: %.c
 	@echo "Compiling Object Files"
 
 $(LIBFT):
-	@make -c libft
+	@make -C libft
 
 $(NAME): $(LIBFT) $(OBJ)
 	gcc $(OBJ) $(LIBFT) -o $(NAME)
