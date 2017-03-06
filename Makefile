@@ -31,7 +31,6 @@ fclean: clean
 re: fclean all
 
 testerror: re
-	./$(NAME) examples/12_hard
 	./$(NAME) examples/bad_ttmn_00
 	./$(NAME) examples/bad_ttmn_01
 	./$(NAME) examples/bad_ttmn_02
@@ -74,6 +73,7 @@ testerror: re
 	./$(NAME) examples/error_25
 
 test: re
+	./$(NAME) examples/12_hard
 	./$(NAME) examples/ok_00
 	./$(NAME) examples/ok_01
 	./$(NAME) examples/ok_02
