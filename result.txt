@@ -1,0 +1,176 @@
+Compiling Object Files
+Compiling Object Files
+./fillit examples/12_hard
+malloc(546) = 0x7fbcb8c03390
+free(0x7fbcb8c03390)
+[OK]: all allocations freed
+./fillit examples/bad_ttmn_00
+malloc(546) = 0x7fb4a2403390
+free(0x7fb4a2403390)
+[OK]: all allocations freed
+./fillit examples/bad_ttmn_01
+malloc(546) = 0x7fec02403390
+free(0x7fec02403390)
+[OK]: all allocations freed
+./fillit examples/bad_ttmn_02
+malloc(546) = 0x7fe6c3c03390
+error
+free(0x7fe6c3c03390)
+[OK]: all allocations freed
+./fillit examples/bad_ttmn_03
+malloc(546) = 0x7fe949c03390
+free(0x7fe949c03390)
+[OK]: all allocations freed
+./fillit examples/bad_ttmn_04
+malloc(546) = 0x7f9743c03390
+free(0x7f9743c03390)
+[OK]: all allocations freed
+./fillit examples/bad_ttmn_05
+malloc(546) = 0x7fc472c03390
+free(0x7fc472c03390)
+[OK]: all allocations freed
+./fillit examples/bad_ttmn_06
+malloc(546) = 0x7f85a0c03390
+free(0x7f85a0c03390)
+[OK]: all allocations freed
+./fillit examples/bad_ttmn_07
+malloc(546) = 0x7fc6a8c03390
+free(0x7fc6a8c03390)
+[OK]: all allocations freed
+./fillit examples/bad_ttmn_08
+malloc(546) = 0x7ff8c1403390
+free(0x7ff8c1403390)
+[OK]: all allocations freed
+./fillit examples/bad_ttmn_09
+malloc(546) = 0x7f861bc03390
+error
+free(0x7f861bc03390)
+[OK]: all allocations freed
+./fillit examples/ko_00
+malloc(546) = 0x7f8f29c03390
+error
+free(0x7f8f29c03390)
+[OK]: all allocations freed
+./fillit examples/ko_01
+malloc(546) = 0x7fdf93403390
+free(0x7fdf93403390)
+[OK]: all allocations freed
+./fillit examples/ko_02
+malloc(546) = 0x7f9ab8403390
+error
+free(0x7f9ab8403390)
+[OK]: all allocations freed
+./fillit examples/bad_26_blocks
+malloc(546) = 0x7fa232403390
+error
+free(0x7fa232403390)
+[OK]: all allocations freed
+./fillit examples/error_0
+malloc(546) = 0x7fdc01c03390
+error
+free(0x7fdc01c03390)
+[OK]: all allocations freed
+./fillit examples/error_1
+malloc(546) = 0x7ff4a8c03390
+free(0x7ff4a8c03390)
+[OK]: all allocations freed
+./fillit examples/error_2
+malloc(546) = 0x7fd312403390
+free(0x7fd312403390)
+[OK]: all allocations freed
+./fillit examples/error_3
+malloc(546) = 0x7fb240c03390
+free(0x7fb240c03390)
+[OK]: all allocations freed
+./fillit examples/error_4
+malloc(546) = 0x7fc9a2c03390
+free(0x7fc9a2c03390)
+[OK]: all allocations freed
+./fillit examples/error_5
+malloc(546) = 0x7fc65a403390
+free(0x7fc65a403390)
+[OK]: all allocations freed
+./fillit examples/error_6
+malloc(546) = 0x7fad89c03390
+free(0x7fad89c03390)
+[OK]: all allocations freed
+./fillit examples/error_7
+malloc(546) = 0x7fc45ac03390
+free(0x7fc45ac03390)
+[OK]: all allocations freed
+./fillit examples/error_8
+malloc(546) = 0x7f8eebc03390
+free(0x7f8eebc03390)
+[OK]: all allocations freed
+./fillit examples/error_9
+malloc(546) = 0x7fadca403390
+free(0x7fadca403390)
+[OK]: all allocations freed
+./fillit examples/error_10
+malloc(546) = 0x7ff2a3c03390
+error
+free(0x7ff2a3c03390)
+[OK]: all allocations freed
+./fillit examples/error_11
+malloc(546) = 0x7f8cb2c03390
+error
+free(0x7f8cb2c03390)
+[OK]: all allocations freed
+./fillit examples/error_12
+malloc(546) = 0x7f9bea403390
+free(0x7f9bea403390)
+[OK]: all allocations freed
+./fillit examples/error_13
+malloc(546) = 0x7f99b9403390
+error
+free(0x7f99b9403390)
+[OK]: all allocations freed
+./fillit examples/error_14
+malloc(546) = 0x7ffa99403390
+free(0x7ffa99403390)
+[OK]: all allocations freed
+./fillit examples/error_15
+malloc(546) = 0x7fe2b3c03390
+free(0x7fe2b3c03390)
+[OK]: all allocations freed
+./fillit examples/error_16
+malloc(546) = 0x7ffc2ac03390
+free(0x7ffc2ac03390)
+[OK]: all allocations freed
+./fillit examples/error_17
+malloc(546) = 0x7fa591403390
+free(0x7fa591403390)
+[OK]: all allocations freed
+./fillit examples/error_18
+malloc(546) = 0x7fa101c03390
+free(0x7fa101c03390)
+[OK]: all allocations freed
+./fillit examples/error_19
+malloc(546) = 0x7fb383c03390
+free(0x7fb383c03390)
+[OK]: all allocations freed
+./fillit examples/error_20
+malloc(546) = 0x7fadd2403390
+free(0x7fadd2403390)
+[OK]: all allocations freed
+./fillit examples/error_21
+malloc(546) = 0x7fe448403390
+free(0x7fe448403390)
+[OK]: all allocations freed
+./fillit examples/error_22
+malloc(546) = 0x7ff012c03390
+free(0x7ff012c03390)
+[OK]: all allocations freed
+./fillit examples/error_23
+malloc(546) = 0x7fa653c03390
+free(0x7fa653c03390)
+[OK]: all allocations freed
+./fillit examples/error_24
+malloc(546) = 0x7fad4bc03390
+error
+free(0x7fad4bc03390)
+[OK]: all allocations freed
+./fillit examples/error_25
+malloc(546) = 0x7f8472c03390
+free(0x7f8472c03390)
+[OK]: all allocations freed
