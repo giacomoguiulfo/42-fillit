@@ -6,18 +6,15 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 13:27:17 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/07 09:59:51 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/07 12:06:29 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
 
-void	populate_valid(char valid[20][15])
+void	populate_valid(int i, char valid[20][15])
 {
-	int		i;
-
-	i = -1;
 	while (++i < 20)
 	{
 		ft_bzero(valid[i], sizeof(valid[i]));
@@ -50,7 +47,7 @@ int		valid_pattern(char **src, int blocks)
 	int		j;
 	int		valid_flg;
 
-	populate_valid(valid);
+	populate_valid(-1, valid);
 	i = -1;
 	while (++i < blocks)
 	{
@@ -69,4 +66,3 @@ int		valid_pattern(char **src, int blocks)
 	}
 	return (0);
 }
-

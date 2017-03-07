@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:03:05 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/06 17:41:26 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/07 11:40:10 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define FILLIT_H
 
 # include <stdio.h>
-
 # define BUFFER_SIZE 546
 # define VALID(a) (a == '#' || a == '.' || a == '\n')
 
