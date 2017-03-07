@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:02:04 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/06 17:37:44 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/07 09:10:00 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,16 +129,6 @@ int		main(int av, char **ac)
 		trim_newline(tbl);
 		trim_block(tbl);
 		CHK2(valid_pattern(tbl, rd) == 1, error(), free(str), 0);
-		/**
-		int		i = 0;
-
-		while (tbl[i])
-		{
-			printf("%s\n", tbl[i]);
-			i++;
-		}
-		close(fd);
-		**/
 	}
 	else
 		ft_putstr("error\n");

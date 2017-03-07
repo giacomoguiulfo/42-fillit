@@ -31,3 +31,20 @@
 # Debug files
 *.dSYM/
 *.su
+
+# OS generated files #
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Vim Backup Files #
+*.swp
+*.swo
+
+# Clion Folders #
+.idea/
+cmake-build-debug/
