@@ -1,10 +1,12 @@
 NAME = fillit
 
 CFLAGS += -Wall -Wextra -Werror
+CFLAGS += -I libft/
 
 SRC = read.c \
 	  split.c \
 	  valid.c \
+	  alloc_wrap.c \
 
 OBJ = $(SRC:.c=.o)
 
