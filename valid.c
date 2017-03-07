@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 13:27:17 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/06 17:47:08 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/06 18:02:32 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,6 @@ int		valid_pattern(char **src, int blocks)
 		j = -1;
 		while (++j < 19)
 		{
-			//printf("Corr %d:   %s\n", j, valid[j]);
-			//printf("Func %d:   %s\n", i, src[i]);
-			//printf("Comp %d\n", ft_strequ(src[i], valid[j]));
 			if (ft_strequ(src[i], valid[j]) == 1)
 			{
 				valid_flg = 1;
