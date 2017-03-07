@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:02:04 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/07 12:03:37 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/07 12:17:37 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 
-extern int g_malloc_inject;
+//extern int g_malloc_inject;
 
 int		error()
 {
@@ -76,7 +76,7 @@ int		main(int av, char **ac)
 	char	*str;
 	char	**tbl;
 
-	g_malloc_inject = 4;
+//	g_malloc_inject = 25;
 
 	CHK1(av != 2, ft_putstr("usage: ./fillit source_file\n"), 0);
 	CHK1((str = (char*)malloc(sizeof(char) * BUFFER_SIZE)) == NULL,
@@ -92,6 +92,8 @@ int		main(int av, char **ac)
 		trim_newline(tbl);
 		trim_block(tbl);
 		CHK3(valid_pattern(tbl, (rd + 1) / 21) == 1, error(), ft_tbldel(tbl), free(str), 0);
+		ft_tbldel(tbl);
+		free(str);
 	}
 	else
 		ft_putstr("error\n");
