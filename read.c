@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:02:04 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/06 14:00:48 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/06 17:37:44 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 #include <sys/uio.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <stdio.h>
 
 # define BUFFER_SIZE 546
 # define V1(a) (a == '#' || a == '.')
@@ -115,7 +114,7 @@ int		main(int av, char **ac)
 	int		fd;
 	int		rd;
 	char	*str;
-	char	**ttm;
+	char	**tbl;
 
 	CHK1(av != 2, ft_putstr("usage: ./fillit source_file\n"), 0);
 	CHK1((str = (char*)malloc(sizeof(char) * BUFFER_SIZE)) == NULL, ft_putstr("error\n"), 0);
@@ -125,10 +124,24 @@ int		main(int av, char **ac)
 		CHK2((rd = read(fd, str, BUFFER_SIZE)) < 0, error(), free(str), 0);
 		CHK2(str[545] != 0, error(), free(str), 0);
 		CHK2(valid_input(str, rd) == 1, error(), free(str), 0);
+		change_end(&str, rd);
+		CHK2((tbl = ft_strsplit(str, '@')) == 0, error(), free(str), 0);
+		trim_newline(tbl);
+		trim_block(tbl);
+		CHK2(valid_pattern(tbl, rd) == 1, error(), free(str), 0);
+		/**
+		int		i = 0;
+
+		while (tbl[i])
+		{
+			printf("%s\n", tbl[i]);
+			i++;
+		}
 		close(fd);
+		**/
 	}
 	else
 		ft_putstr("error\n");
-	free(str);
+
 	return (0);
 }

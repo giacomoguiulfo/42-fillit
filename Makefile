@@ -3,6 +3,8 @@ NAME = fillit
 CFLAGS += -Wall -Wextra -Werror
 
 SRC = read.c \
+	  split.c \
+	  valid.c \
 
 OBJ = $(SRC:.c=.o)
 
@@ -71,7 +73,17 @@ testerror: re
 	./$(NAME) examples/error_23
 	./$(NAME) examples/error_24
 	./$(NAME) examples/error_25
-
+	./$(NAME) examples/invalid_startnewline.fillit
+	./$(NAME) examples/invalid_space.fillit
+	./$(NAME) examples/invalid_blocking.fillit
+	./$(NAME) examples/invalid_fulltetromino.fillit
+	./$(NAME) examples/invalid_blanktetromino.fillit
+	./$(NAME) examples/invalid_char.fillit
+	./$(NAME) examples/invalid_tetromino.fillit
+	./$(NAME) examples/invalid_width_broad.fillit
+	./$(NAME) examples/invalid_width_short.fillit
+	./$(NAME) examples/invalid_overflow.fillit
+	./$(NAME) examples/invalid_empty.fillit
 test: re
 	./$(NAME) examples/12_hard
 	./$(NAME) examples/ok_00
@@ -110,3 +122,14 @@ test: re
 	./$(NAME) examples/valid_19
 	./$(NAME) examples/valid_20
 	./$(NAME) examples/valid_21
+	./$(NAME) examples/hvalid_0.fillit
+	./$(NAME) examples/hvalid_1.fillit
+	./$(NAME) examples/hvalid_2.fillit
+	./$(NAME) examples/hvalid_3.fillit
+	./$(NAME) examples/pdf_example_0.fillit
+	./$(NAME) examples/pdf_example_1.fillit
+	./$(NAME) examples/pdf_example_2.fillit
+	./$(NAME) examples/pdf_example_3.fillit
+	./$(NAME) examples/just_one.fillit
+	./$(NAME) examples/just2.fillit
+	./$(NAME) examples/easy_26.fillit
