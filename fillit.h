@@ -13,10 +13,10 @@
 #ifndef FILLIT_H
 # define FILLIT_H
 
-# define EXT(a, b) do{if(a){exit(b);}}while(0)
-# define EXT1(a, b, c) do{if(a){b; exit(c);}}while(0)
-
 # include <stdio.h>
+
+# define BUFFER_SIZE 546
+# define VALID(a) (a == '#' || a == '.' || a == '\n')
 
 int		error(void);
 void	change_end(char **src, int bytes);
