@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:02:04 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 15:35:19 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/08 15:46:39 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,44 @@ int		valid_1(char *str, int bytes)
 	return (0);
 }
 
+int		valid_2(char *str, int bytes)
+{
+	int n;
+	int i;
+	int k;
+
+	n = 0;
+	while (n < bytes)
+	{
+		i = 0;
+		while (i <= 15)
+		{
+			k = n + i;
+			if (!V1(str[k]) || !V1(str[k + 1]) || !V1(str[k + 2])
+					|| !V1(str[k + 3]) || !V2(str[k + 4]))
+				return (1);
+			i += 5;
+		}
+		n += 21;
+	}
+	return (0);
+}
+
 int		valid_0(char *str, int bytes)
 {
 	if (valid_1(str, bytes) == 1)
 		return (1);
+	printf("Valid1 PASS\n");
+	//if (valid_2(str, bytes) == 1)
+	//	return (1);
+	//printf("Valid2 PASS\n");
 	while (*str)
 	{
-		if (!VALID(*str))
+		if (!V3(*str))
 			return (1);
 		str++;
 	}
+	printf("Valid3 PASS\n");
 	return (0);
 }
 
@@ -100,6 +128,7 @@ int		main(int av, char **ac)
 		trim_newline(tbl);
 		trim_block(tbl);
 		CHK3(valid_pattern(tbl, blocks) == 1, error(), ft_tbldel(tbl), free(str), 0);
+		printf("Valid4 PASS\n");
 		rename_block(tbl);
 		tmp_print(tbl, blocks);
 		solve(tbl, blocks);
