@@ -7,7 +7,7 @@ SRC = read.c \
 	  split.c \
 	  valid.c \
 	  map.c \
-	  alloc_wrap.c \
+#	  alloc_wrap.c \
 
 OBJ = $(SRC:.c=.o)
 
