@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 09:44:19 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 10:29:15 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/08 15:11:44 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,14 @@ char	**new_map(size_t size)
 	size_t	j;
 	char	**map;
 	
-	CHK((map = (char **)malloc(sizeof(char*) * size + 1)) == 0, 0);
+	CHK((map = (char **)malloc(sizeof(char*) * (size + 1))) == 0, 0);
+	ft_bzero(map, size + 1);
 	i = -1;
 	while (++i < size)
 	{
-		CHK1((map[i] = (char*)malloc(sizeof(char) * size + 1)) == 0, delete_map(map), 0);
-		j = -1;
+		CHK1((map[i] = (char*)malloc(sizeof(char) * (size + 1))) == 0, delete_map(map), 0);
 		ft_bzero(map[i], size + 1);
+		j = -1;
 		while (++j < size)
 			map[i][j] = '.';
 	}
@@ -65,7 +66,7 @@ int		solve(char **tbl, size_t blocks)
 
 	tmp = tbl;
 	
-	CHK1((map = new_map(blocks * 4)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
+	CHK1((map = new_map(blocks)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
 	print_map(map);
 	delete_map(map);
 	return (0);
