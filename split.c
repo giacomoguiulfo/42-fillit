@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 14:04:46 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/07 12:06:18 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/08 09:58:06 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,27 @@ void	trim_block(char **src)
 		}
 		ft_strcpy(src[i], tmp);
 		i++;
+	}
+}
+
+void	rename_block(char **src)
+{
+	int		i;
+	char	n;
+	char	*tmp;
+
+	i = 0;
+	n = 'A';
+	while (src[i])
+	{
+		tmp = src[i];
+		while (*tmp)
+		{
+			if (*tmp == '#')
+				*tmp = n;
+			tmp++;
+		}
+		++n;
+		++i;
 	}
 }

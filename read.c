@@ -6,19 +6,18 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:02:04 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/07 12:17:37 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/08 10:28:37 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "fillit.h"
-#include <stdlib.h>
 #include <sys/types.h>
 #include <sys/uio.h>
 #include <unistd.h>
 #include <fcntl.h>
 
-//extern int g_malloc_inject;
+extern int g_malloc_inject;
 
 int		error()
 {
@@ -71,12 +70,14 @@ int		valid_0(char *str, int bytes)
 
 int		main(int av, char **ac)
 {
-	int		fd;
-	int		rd;
+	size_t	fd;
+	size_t	rd;
 	char	*str;
 	char	**tbl;
+	size_t	blocks;
+	size_t	i;
 
-//	g_malloc_inject = 25;
+	g_malloc_inject = 50;
 
 	CHK1(av != 2, ft_putstr("usage: ./fillit source_file\n"), 0);
 	CHK1((str = (char*)malloc(sizeof(char) * BUFFER_SIZE)) == NULL,
@@ -87,16 +88,24 @@ int		main(int av, char **ac)
 		CHK2((rd = read(fd, str, BUFFER_SIZE)) < 0, error(), free(str), 0);
 		CHK2(str[545] != 0, error(), free(str), 0);
 		CHK2(valid_0(str, rd) == 1, error(), free(str), 0);
+		blocks = (rd + 1) / 21;
 		change_end(&str, rd);
 		CHK2((tbl = ft_strsplit(str, '@')) == 0, error(), free(str), 0);
 		trim_newline(tbl);
 		trim_block(tbl);
-		CHK3(valid_pattern(tbl, (rd + 1) / 21) == 1, error(), ft_tbldel(tbl), free(str), 0);
+		CHK3(valid_pattern(tbl, blocks) == 1, error(), ft_tbldel(tbl), free(str), 0);
+		rename_block(tbl);
+		i = -1;
+		while (++i <  blocks)
+			printf("%s\n", tbl[i]);
+		solve(tbl, blocks);
 		ft_tbldel(tbl);
 		free(str);
 	}
 	else
-		ft_putstr("error\n");
-
+	{
+		free(str);
+		error();
+	}
 	return (0);
 }
