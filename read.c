@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:02:04 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 11:28:43 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/08 15:35:19 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,14 @@ int		valid_0(char *str, int bytes)
 	return (0);
 }
 
+void	tmp_print(char **tbl, int blocks)
+{
+	int i;
+	i = -1;
+	while (++i <  blocks)
+		printf("%s\n", tbl[i]);
+}
+
 int		main(int av, char **ac)
 {
 	size_t	fd;
@@ -74,7 +82,6 @@ int		main(int av, char **ac)
 	char	*str;
 	char	**tbl;
 	size_t	blocks;
-	size_t	i;
 
 //	g_malloc_inject = 50;
 
@@ -94,10 +101,8 @@ int		main(int av, char **ac)
 		trim_block(tbl);
 		CHK3(valid_pattern(tbl, blocks) == 1, error(), ft_tbldel(tbl), free(str), 0);
 		rename_block(tbl);
-		i = -1;
-		while (++i <  blocks)
-			printf("%s\n", tbl[i]);
-///		solve(tbl, blocks);
+		tmp_print(tbl, blocks);
+		solve(tbl, blocks);
 		ft_tbldel(tbl);
 		free(str);
 	}
