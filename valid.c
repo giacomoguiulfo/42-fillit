@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 13:27:17 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 22:40:31 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/08 22:52:15 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ int		valid_pattern(char **src, int blocks)
 		{
 			if (bool_strstr(src[i], valid[j]) == true)
 			{
-				
+				ft_bzero(src[i], ft_strlen(src[i]));
+				ft_strcpy(src[i], valid[j]);
 				valid_flg = 1;
 				break ;
 			}
