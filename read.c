@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:02:04 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 22:30:03 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/08 22:47:30 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,29 +113,23 @@ int		main(int av, char **ac)
 
 	CHK1(av != 2, ft_putstr("usage: ./fillit source_file\n"), 0);
 	CHK1((str = (char*)malloc(sizeof(char) * BUFFER_SIZE)) == NULL,
-		 ft_putstr("error\n"), 0);
+	ft_putstr("error\n"), 0);
 	ft_bzero((void *)str, BUFFER_SIZE);
-	if ((fd = open(ac[1], O_RDONLY)) != 0)
-	{
-		CHK2((rd = read(fd, str, BUFFER_SIZE)) < 0, error(), free(str), 0);
-		CHK2(str[545] != 0, error(), free(str), 0);
-		CHK2(valid_0(str, rd) == 1, error(), free(str), 0);
-		blocks = (rd + 1) / 21;
-		change_end(&str, rd);
-		CHK2((tbl = ft_strsplit(str, '@')) == 0, error(), free(str), 0);
-		trim_newline(tbl);
-		CHK3(valid_pattern(tbl, blocks) == 1, error(), ft_tbldel(tbl), free(str), 0);
-		rename_block(tbl);
-//		tmp_print(tbl, blocks);
-		trim_block(tbl);
-		solve(tbl, blocks);
-		ft_tbldel(tbl);
-		free(str);
-	}
-	else
-	{
-		free(str);
-		error();
-	}
+	CHK2((fd = open(ac[1], O_RDONLY, S_IRUSR)) == -1, free(str), error(), 0);
+	CHK2((rd = read(fd, str, BUFFER_SIZE)) < 0, error(), free(str), 0);
+	CHK2(str[545] != 0, error(), free(str), 0);
+	CHK2(valid_0(str, rd) == 1, error(), free(str), 0);
+	blocks = (rd + 1) / 21;
+	change_end(&str, rd);
+	CHK2((tbl = ft_strsplit(str, '@')) == 0, error(), free(str), 0);
+	trim_newline(tbl);
+	CHK3(valid_pattern(tbl, blocks) == 1, error(), ft_tbldel(tbl), free(str), 0);
+	rename_block(tbl);
+	//tmp_print(tbl, blocks);
+	trim_block(tbl);
+	solve(tbl, blocks);
+	ft_tbldel(tbl);
+	free(str);
+	close(fd);
 	return (0);
 }
