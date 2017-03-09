@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 09:44:19 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 20:51:25 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/08 21:09:20 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	**new_map(size_t size)
 	char	**map;
 
 	n_size = size + 3;
-	CHK((map = (char **)malloc(sizeof(char*) * (n_size))) == 0, 0);
+	CHK((map = (char **)malloc(sizeof(char*) * (n_size + 1))) == 0, 0);
 	ft_bzero(map, n_size);
 	i = -1;
 	while (++i < size)
@@ -59,10 +59,12 @@ char	**new_map(size_t size)
 	}
 	while (i < n_size)
 	{
+		map[i] = (char*)malloc(sizeof(char) * n_size);
 		CHK1((map[i] = (char*)malloc(sizeof(char) * (n_size))) == 0, delete_map(map), 0);
 		ft_bzero(map[i], n_size);
 		++i;
 	}
+	map[i] = 0;
 	return (map);
 }
 
