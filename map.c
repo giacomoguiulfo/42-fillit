@@ -104,7 +104,7 @@ void	place(char **map, char*tetri, int cols, int rows)
 			cols = init_cols;
 			rows++;
 		}
-		if (map[rows][cols] == '\0')
+		/*if (map[rows][cols] == '\0')
 		{
 			rows++;
 			i = 0;
@@ -112,8 +112,8 @@ void	place(char **map, char*tetri, int cols, int rows)
 			if (*tetri == '.')
 				tetri++;
 			printf("Map == NULL\n");
-		}
-		else if (*tetri != '.')
+		}*/
+		else if (*tetri != '.' && map[rows][cols] != '\0')
 		{
 			map[rows][cols] = *tetri;
 			cols++;
@@ -123,6 +123,7 @@ void	place(char **map, char*tetri, int cols, int rows)
 		}
 		else
 		{
+			/*
 			printf("Else...\n");
 			if (i > 3)
 			{
@@ -130,14 +131,14 @@ void	place(char **map, char*tetri, int cols, int rows)
 				i = 0;
 				cols = init_cols;
 				rows++;
-			}
-			else
-			{
+			}*/
+			//else
+			//{
 				printf("else & else\n");
 				i++;
 				cols++;
 				tetri++;
-			}
+			//}
 		}
 	}
 }
@@ -148,9 +149,8 @@ int		solve(char **tbl, size_t blocks)
 	char	**tmp;
 
 	tmp = tbl;
-	//int i = 0;
 	CHK1((map = new_map(blocks)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
-	//place(map, tbl[4], 1, 0);
+	place(map, tbl[5], 1, 0);
 	print_map(map, blocks);
 	delete_map(map);
 		return (0);
