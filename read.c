@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:02:04 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 21:02:25 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/08 22:30:03 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ int		main(int av, char **ac)
 		change_end(&str, rd);
 		CHK2((tbl = ft_strsplit(str, '@')) == 0, error(), free(str), 0);
 		trim_newline(tbl);
-		trim_block(tbl);
+//		trim_block(tbl);
 		CHK3(valid_pattern(tbl, blocks) == 1, error(), ft_tbldel(tbl), free(str), 0);
 		rename_block(tbl);
 //		tmp_print(tbl, blocks);
