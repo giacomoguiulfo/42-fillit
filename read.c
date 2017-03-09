@@ -124,10 +124,10 @@ int		main(int av, char **ac)
 		change_end(&str, rd);
 		CHK2((tbl = ft_strsplit(str, '@')) == 0, error(), free(str), 0);
 		trim_newline(tbl);
-//		trim_block(tbl);
 		CHK3(valid_pattern(tbl, blocks) == 1, error(), ft_tbldel(tbl), free(str), 0);
 		rename_block(tbl);
 //		tmp_print(tbl, blocks);
+		trim_block(tbl);
 		solve(tbl, blocks);
 		ft_tbldel(tbl);
 		free(str);

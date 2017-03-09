@@ -92,6 +92,7 @@ void	place(char **map, char*tetri, int cols, int rows)
 	while (*tetri == '.')
 	{
 		i++;
+
 		//CHK(--init_cols < 0, 0);
 
 	}
@@ -150,7 +151,7 @@ int		solve(char **tbl, size_t blocks)
 
 	tmp = tbl;
 	CHK1((map = new_map(blocks)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
-	//place(map, tbl[5], 1, 0);
+	place(map, tbl[0], 1, 0);
 	print_map(map, blocks);
 	delete_map(map);
 		return (0);
