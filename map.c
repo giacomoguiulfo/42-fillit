@@ -6,18 +6,18 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 09:44:19 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 20:48:56 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/08 20:51:25 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	print_map(char **map)
+void	print_map(char **map, size_t size)
 {
 	size_t	i;
 
 	i = 0;
-	while (map[i])
+	while (i < size)
 	{
 		ft_putstr(map[i]);
 		ft_putchar('\n');
@@ -149,7 +149,7 @@ int		solve(char **tbl, size_t blocks)
 	//int i = 0;
 	CHK1((map = new_map(blocks)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
 	//place(map, tbl[i], 2, 0);
-	print_map(map);
+	print_map(map, blocks);
 	delete_map(map);
 		return (0);
 	}
