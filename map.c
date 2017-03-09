@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 09:44:19 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 22:33:07 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/09 11:03:45 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ void	place(char **map, char*tetri, int cols, int rows)
 	while (*tetri == '.')
 	{
 		i++;
-
+		tetri++;
 		//CHK(--init_cols < 0, 0);
 
 	}
