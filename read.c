@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:02:04 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 22:52:24 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/09 11:01:52 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int		error()
 	return (0);
 }
 
-int		valid_1(char *str, int bytes)
+t_bool	valid_1(char *str, int bytes)
 {
 	int n;
 	int i;
@@ -46,15 +46,15 @@ int		valid_1(char *str, int bytes)
 				count2++;
 		}
 		if (count1 != 4)
-			return (1);
+			return (false);
 		if (count2 != 12)
-			return (1);
+			return (false);
 		n += 21;
 	}
-	return (0);
+	return (true);
 }
 
-int		valid_2(char *str, int bytes)
+t_bool	valid_2(char *str, int bytes)
 {
 	int n;
 	int i;
@@ -69,28 +69,28 @@ int		valid_2(char *str, int bytes)
 			k = n + i;
 			if (!V1(str[k]) || !V1(str[k + 1]) || !V1(str[k + 2])
 					|| !V1(str[k + 3]) || !V2(str[k + 4]))
-				return (1);
+				return (false);
 			i += 5;
 		}
 		n += 21;
 	}
-	return (0);
+	return (true);
 }
 
-int		valid_0(char *str, int bytes)
+t_bool	valid_0(char *str, int bytes)
 {
 	bytes++;
-	if (valid_1(str, bytes) == 1)
-		return (1);
-	if (valid_2(str, bytes) == 1)
-		return (1);
+	if (valid_1(str, bytes) == false)
+		return (false);
+	if (valid_2(str, bytes) == false)
+		return (false);
 	while (*str)
 	{
 		if (!V3(*str))
-			return (1);
+			return (false);
 		str++;
 	}
-	return (0);
+	return (true);
 }
 
 void	tmp_print(char **tbl, int blocks)
@@ -118,12 +118,12 @@ int		main(int av, char **ac)
 	CHK2((fd = open(ac[1], O_RDONLY, S_IRUSR)) == -1, free(str), error(), 0);
 	CHK2((rd = read(fd, str, BUFFER_SIZE)) < 0, error(), free(str), 0);
 	CHK2(str[545] != 0, error(), free(str), 0);
-	CHK2(valid_0(str, rd) == 1, error(), free(str), 0);
+	CHK2(!valid_0(str, rd), error(), free(str), 0);
 	blocks = (rd + 1) / 21;
 	change_end(&str, rd);
 	CHK2((tbl = ft_strsplit(str, '@')) == 0, error(), free(str), 0);
 	trim_newline(tbl);
-	CHK3(valid_pattern(tbl, blocks) == 1, error(), ft_tbldel(tbl), free(str), 0);
+	CHK3(!valid_pattern(tbl, blocks), error(), ft_tbldel(tbl), free(str), 0);
 	rename_block(tbl);
 	tmp_print(tbl, blocks);
 	//trim_block(tbl);

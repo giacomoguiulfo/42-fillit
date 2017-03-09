@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:03:05 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 22:29:12 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/09 11:00:18 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int		error(void);
 void	change_end(char **src, int bytes);
 void	trim_block(char **src);
 void	trim_newline(char **src);
-int		valid_pattern(char **src, int blocks);
+t_bool	valid_pattern(char **src, int blocks);
 void	rename_block(char **src);
 int		solve(char **tbl, size_t blocks);
 #endif

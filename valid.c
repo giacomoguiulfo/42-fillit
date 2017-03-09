@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 13:27:17 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 22:52:15 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/09 10:57:40 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	populate_valid(int i, char valid[20][15])
 	ft_strcpy(valid[18], "##...##");
 }
 
-int		valid_pattern(char **src, int blocks)
+t_bool	valid_pattern(char **src, int blocks)
 {
 	char	valid[20][15];
 	int		i;
@@ -86,7 +86,7 @@ int		valid_pattern(char **src, int blocks)
 			}
 		}
 		if (!valid_flg)
-			return (1);
+			return (false);
 	}
-	return (0);
+	return (true);
 }
