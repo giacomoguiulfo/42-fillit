@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 09:44:19 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 13:57:21 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/09 14:20:10 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,26 +187,34 @@ int		test_place(char **tbl, size_t blocks)
 {
 	int		i;
 	int		j;
+	size_t	k;
 	char	**map;
 	
-	blocks++;
-
 	CHK1((map = new_map(6)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
+	k = 0;
+	while (k < blocks)
+	{
 		i = 0;
 		while (i < 7)
 		{
 			j = 0;
 			while (j < 7)
 			{
-				place(map, tbl[18], j, i);
-				printf("row = %d, col = %d\n", i, j);
+				place(map, tbl[k], j, i);
+				ft_putstr("row = ");
+				ft_putnbr(i);
+				ft_putstr(" cor = ");
+				ft_putnbr(j);
+				ft_putchar('\n');
 				print_map(map, 6);
-				printf("\n");
+				ft_putchar('\n');
 				reset_map(map);
 				j++;
 			}
 			i++;
 		}
+		k++;
+	}
 	delete_map(map);
 	return (0);
 }
@@ -215,7 +223,6 @@ int		solve(char **tbl, size_t blocks)
 {
 	//char	**map;
 
-	printf("\n\nNEW TEST: \n");
 	test_place(tbl, blocks);
 	//CHK1((map = new_map(blocks)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
 	/**
