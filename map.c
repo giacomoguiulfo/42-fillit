@@ -80,68 +80,88 @@ size_t initial_board_size(size_t nb_blocks)
 	return (i);
 }
 
-void	place(char **map, char*tetri, int cols, int rows)
+char	get_letter(char *str)
+{
+	while (*str == '.')
+		str++;
+	return (*str);
+}
+
+void remove_tetri(char **map, char ch)
+{
+	size_t row;
+	size_t col;
+
+	row = 0;
+	while (map[row])
+	{
+		col = 0;
+		while (map[row][col])
+		{
+			if (map[row][col] == ch)
+				map[row][col] = '.';
+			col++;
+		}
+		row++;
+	}
+}
+
+t_bool	place(char **map, char*tetri, int cols, int rows)
 {
 	size_t i;
-	size_t init_cols;
-	size_t init_rows;
+	int init_cols;
+	int init_rows;
+	int init_dots;
 
 	init_rows = rows;
 	init_cols = cols;
 	i = 0;
+	init_dots = 0;
 	while (*tetri == '.')
 	{
 		i++;
 		tetri++;
-		//CHK(--init_cols < 0, 0);
-
+		init_dots++;
 	}
+	if (init_dots == 1)
+		init_cols--;
+	if (init_cols < 0)
+		return (false);
 	while (*tetri != '\0')
 	{
 		if (i > 3)
 		{
-			printf("i > 3\n");
+			//printf("i > 3\n");
 			i = 0;
 			cols = init_cols;
 			rows++;
 		}
-		/*if (map[rows][cols] == '\0')
+		else if (*tetri != '.' && map[rows][cols] != '.' && map[rows][cols] != '\0')
 		{
-			rows++;
-			i = 0;
-			cols = init_cols;
-			if (*tetri == '.')
-				tetri++;
-			printf("Map == NULL\n");
-		}*/
-		else if (*tetri != '.' && map[rows][cols] != '\0')
+			return (false);
+		}
+		else if (*tetri != '.' && map[rows][cols] == '\0')
+		{
+			remove_tetri(map ,get_letter(tetri));
+			return (false);
+		}
+		else if (*tetri != '.' && map[rows][cols] == '.')
 		{
 			map[rows][cols] = *tetri;
 			cols++;
-			printf("Cols++\n");
+			//printf("Cols++\n");
 			tetri++;
 			i++;
 		}
 		else
 		{
-			/*
-			printf("Else...\n");
-			if (i > 3)
-			{
-				printf("i > 3\n");
-				i = 0;
-				cols = init_cols;
-				rows++;
-			}*/
-			//else
-			//{
-				printf("else & else\n");
-				i++;
-				cols++;
-				tetri++;
-			//}
+			//printf("else & else\n");
+			i++;
+			cols++;
+			tetri++;
 		}
 	}
+	return (true);
 }
 
 int		solve(char **tbl, size_t blocks)
@@ -151,8 +171,15 @@ int		solve(char **tbl, size_t blocks)
 
 	tmp = tbl;
 	CHK1((map = new_map(blocks)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
-	place(map, tbl[0], 1, 0);
+	if (place(map, tbl[4], 26, 0))
+		printf("Placed properly\n");
+	else
+		printf("NOT placed properly\n");
+	if (place(map, tbl[2], 24, 0))
+		printf("Placed properly\n");
+	else
+		printf("NOT placed properly\n");
 	print_map(map, blocks);
 	delete_map(map);
-		return (0);
+	return (0);
 }
