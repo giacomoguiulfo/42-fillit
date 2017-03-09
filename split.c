@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 14:04:46 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 09:58:06 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/08 22:54:05 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	trim_newline(char **src)
 	}
 }
 
+/**
 void	trim_block(char **src)
 {
 	int		i;
@@ -79,6 +80,7 @@ void	trim_block(char **src)
 		i++;
 	}
 }
+**/
 
 void	rename_block(char **src)
 {
