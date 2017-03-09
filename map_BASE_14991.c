@@ -6,18 +6,18 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 09:44:19 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 22:03:50 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/08 15:11:44 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	print_map(char **map, size_t size)
+void	print_map(char **map)
 {
 	size_t	i;
 
 	i = 0;
-	while (i < size)
+	while (map[i])
 	{
 		ft_putstr(map[i]);
 		ft_putchar('\n');
@@ -42,27 +42,18 @@ char	**new_map(size_t size)
 {
 	size_t	i;
 	size_t	j;
-	size_t	n_size;
 	char	**map;
 
-	n_size = size + 3;
-	CHK((map = (char **)malloc(sizeof(char*) * (n_size + 1))) == 0, 0);
-	ft_bzero(map, n_size);
+	CHK((map = (char **)malloc(sizeof(char*) * (size + 1))) == 0, 0);
+	ft_bzero(map, size + 1);
 	i = -1;
 	while (++i < size)
 	{
-		CHK1((map[i] = (char*)malloc(sizeof(char) * (n_size))) == 0, delete_map(map), 0);
-		ft_bzero(map[i], n_size);
+		CHK1((map[i] = (char*)malloc(sizeof(char) * (size + 1))) == 0, delete_map(map), 0);
+		ft_bzero(map[i], size + 1);
 		j = -1;
 		while (++j < size)
 			map[i][j] = '.';
-	}
-	while (i < n_size)
-	{
-		map[i] = (char*)malloc(sizeof(char) * n_size);
-		CHK1((map[i] = (char*)malloc(sizeof(char) * (n_size))) == 0, delete_map(map), 0);
-		ft_bzero(map[i], n_size);
-		++i;
 	}
 	map[i] = 0;
 	return (map);
@@ -90,19 +81,12 @@ void	place(char **map, char*tetri, int cols, int rows)
 	init_cols = cols;
 	i = 0;
 	while (*tetri == '.')
-	{
 		i++;
-		//CHK(--init_cols < 0, 0);
-
-	}
 	while (*tetri != '\0')
 	{
-		if (i > 3)
+		if (map[rows][cols] == '\0' && i > 3)
 		{
-			printf("i > 3\n");
 			i = 0;
-			cols = init_cols;
-			rows++;
 		}
 		if (map[rows][cols] == '\0')
 		{
@@ -148,10 +132,10 @@ int		solve(char **tbl, size_t blocks)
 	char	**tmp;
 
 	tmp = tbl;
-	//int i = 0;
+
 	CHK1((map = new_map(blocks)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
-	//place(map, tbl[4], 1, 0);
+		place(map, tbl[4], 1, 0);
 	print_map(map);
 	delete_map(map);
 		return (0);
-}
+	}

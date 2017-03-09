@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 09:44:19 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 22:03:50 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/08 21:09:20 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,8 +150,8 @@ int		solve(char **tbl, size_t blocks)
 	tmp = tbl;
 	//int i = 0;
 	CHK1((map = new_map(blocks)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
-	//place(map, tbl[4], 1, 0);
-	print_map(map);
+	//place(map, tbl[i], 2, 0);
+	print_map(map, blocks);
 	delete_map(map);
 		return (0);
-}
+	}
