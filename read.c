@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:02:04 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 15:46:39 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/08 16:52:11 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,17 @@ int		valid_2(char *str, int bytes)
 
 int		valid_0(char *str, int bytes)
 {
+	bytes++;
 	if (valid_1(str, bytes) == 1)
 		return (1);
-	printf("Valid1 PASS\n");
-	//if (valid_2(str, bytes) == 1)
-	//	return (1);
-	//printf("Valid2 PASS\n");
+	if (valid_2(str, bytes) == 1)
+		return (1);
 	while (*str)
 	{
 		if (!V3(*str))
 			return (1);
 		str++;
 	}
-	printf("Valid3 PASS\n");
 	return (0);
 }
 
@@ -128,7 +126,6 @@ int		main(int av, char **ac)
 		trim_newline(tbl);
 		trim_block(tbl);
 		CHK3(valid_pattern(tbl, blocks) == 1, error(), ft_tbldel(tbl), free(str), 0);
-		printf("Valid4 PASS\n");
 		rename_block(tbl);
 		tmp_print(tbl, blocks);
 		solve(tbl, blocks);
