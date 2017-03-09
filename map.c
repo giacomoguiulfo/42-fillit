@@ -43,7 +43,7 @@ char	**new_map(size_t size)
 	size_t	i;
 	size_t	j;
 	char	**map;
-	
+
 	CHK((map = (char **)malloc(sizeof(char*) * (size + 1))) == 0, 0);
 	ft_bzero(map, size + 1);
 	i = -1;
@@ -59,15 +59,83 @@ char	**new_map(size_t size)
 	return (map);
 }
 
+size_t initial_board_size(size_t nb_blocks)
+{
+	size_t min_size;
+	size_t i;
+
+	i = 2;
+	min_size = nb_blocks * 4;
+	while (min_size > (i * i))
+		i++;
+	return (i);
+}
+
+void	place(char **map, char*tetri, int cols, int rows)
+{
+	size_t i;
+	size_t init_cols;
+	size_t init_rows;
+
+	init_rows = rows;
+	init_cols = cols;
+	i = 0;
+	while (*tetri == '.')
+		i++;
+	while (*tetri != '\0')
+	{
+		if (map[rows][cols] == '\0' && i > 3)
+		{
+			i = 0;
+		}
+		if (map[rows][cols] == '\0')
+		{
+			rows++;
+			i = 0;
+			cols = init_cols;
+			if (*tetri == '.')
+				tetri++;
+			printf("Map == NULL\n");
+		}
+		else if (*tetri != '.')
+		{
+			map[rows][cols] = *tetri;
+			cols++;
+			printf("Cols++\n");
+			tetri++;
+			i++;
+		}
+		else
+		{
+			printf("Else...\n");
+			if (i > 3)
+			{
+				printf("i > 3\n");
+				i = 0;
+				cols = init_cols;
+				rows++;
+			}
+			else
+			{
+				printf("else & else\n");
+				i++;
+				cols++;
+				tetri++;
+			}
+		}
+	}
+}
+
 int		solve(char **tbl, size_t blocks)
 {
 	char	**map;
 	char	**tmp;
 
 	tmp = tbl;
-	
+
 	CHK1((map = new_map(blocks)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
+		place(map, tbl[4], 1, 0);
 	print_map(map);
 	delete_map(map);
-	return (0);
-}
+		return (0);
+	}
