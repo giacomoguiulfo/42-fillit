@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 09:44:19 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 11:03:45 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/09 13:57:21 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,25 @@ void	print_map(char **map, size_t size)
 		ft_putstr(map[i]);
 		ft_putchar('\n');
 		++i;
+	}
+}
+
+void	reset_map(char **map)
+{
+	int		i;
+	int		j;
+	
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] != '\0')
+				map[i][j] = '.';
+			j++;
+		}
+		i++;
 	}
 }
 
@@ -164,13 +183,42 @@ t_bool	place(char **map, char*tetri, int cols, int rows)
 	return (true);
 }
 
+int		test_place(char **tbl, size_t blocks)
+{
+	int		i;
+	int		j;
+	char	**map;
+	
+	blocks++;
+
+	CHK1((map = new_map(6)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
+		i = 0;
+		while (i < 7)
+		{
+			j = 0;
+			while (j < 7)
+			{
+				place(map, tbl[18], j, i);
+				printf("row = %d, col = %d\n", i, j);
+				print_map(map, 6);
+				printf("\n");
+				reset_map(map);
+				j++;
+			}
+			i++;
+		}
+	delete_map(map);
+	return (0);
+}
+
 int		solve(char **tbl, size_t blocks)
 {
-	char	**map;
-	char	**tmp;
+	//char	**map;
 
-	tmp = tbl;
-	CHK1((map = new_map(blocks)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
+	printf("\n\nNEW TEST: \n");
+	test_place(tbl, blocks);
+	//CHK1((map = new_map(blocks)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
+	/**
 	if (place(map, tbl[4], 26, 0))
 		printf("Placed properly\n");
 	else
@@ -180,6 +228,7 @@ int		solve(char **tbl, size_t blocks)
 	else
 		printf("NOT placed properly\n");
 	print_map(map, blocks);
-	delete_map(map);
+	**/
+//	delete_map(map);
 	return (0);
 }
