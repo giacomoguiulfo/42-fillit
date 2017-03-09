@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 09:44:19 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/08 15:11:44 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/08 20:48:56 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,19 +42,26 @@ char	**new_map(size_t size)
 {
 	size_t	i;
 	size_t	j;
+	size_t	n_size;
 	char	**map;
 
-	CHK((map = (char **)malloc(sizeof(char*) * (size + 3))) == 0, 0);
-	ft_bzero(map, size + 3);
+	n_size = size + 3;
+	CHK((map = (char **)malloc(sizeof(char*) * (n_size))) == 0, 0);
+	ft_bzero(map, n_size);
 	i = -1;
-	while (++i < size + 3)
+	while (++i < size)
 	{
-		CHK1((map[i] = (char*)malloc(sizeof(char) * (size + 3))) == 0, delete_map(map), 0);
-		ft_bzero(map[i], size + 3);
+		CHK1((map[i] = (char*)malloc(sizeof(char) * (n_size))) == 0, delete_map(map), 0);
+		ft_bzero(map[i], n_size);
 		j = -1;
-		
 		while (++j < size)
 			map[i][j] = '.';
+	}
+	while (i < n_size)
+	{
+		CHK1((map[i] = (char*)malloc(sizeof(char) * (n_size))) == 0, delete_map(map), 0);
+		ft_bzero(map[i], n_size);
+		++i;
 	}
 	return (map);
 }
@@ -139,9 +146,9 @@ int		solve(char **tbl, size_t blocks)
 	char	**tmp;
 
 	tmp = tbl;
-	int i = 0;
+	//int i = 0;
 	CHK1((map = new_map(blocks)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
-	place(map, tbl[i], 2, 0);
+	//place(map, tbl[i], 2, 0);
 	print_map(map);
 	delete_map(map);
 		return (0);
