@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:03:05 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/10 12:52:30 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/10 12:56:40 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # define V1(a) (a == '#' || a == '.')
 # define V2(a) (a == '\n')
 # define V3(a) (a == '#' || a == '.' || a == '\n')
-# define NOTEMPTY(a) (a == '\0' || a == '.')
 # define DOT(a) (a == '.')
 # define DO2(a, b) do{a; b;}while(0)
 # define DO3(a, b, c) do{a; b; c;}while(0)
