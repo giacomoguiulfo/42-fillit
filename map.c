@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 09:44:19 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 18:36:39 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/09 19:12:18 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,56 +106,6 @@ char	get_letter(char *str)
 	while (*str == '.')
 		str++;
 	return (*str);
-}
-
-void	remove_tetri(char **map, char *tetri)
-{
-	size_t 	row;
-	size_t 	col;
-	char	ch;
-
-	row = 0;
-	ch = get_letter(tetri);
-	while (map[row])
-	{
-		col = 0;
-		while (map[row][col])
-		{
-			if (map[row][col] == ch)
-				map[row][col] = '.';
-			col++;
-		}
-		row++;
-	}
-}
-
-t_bool	place(char **map, char*tetri, int col, int row)
-{
-	size_t	i;
-	int		init_col;
-
-	init_col = col;
-	i = 0;
-	while (*tetri == '.')
-		DO3(i++, tetri++, init_col--);
-	CHK(init_col < 0, false);
-	while (*tetri != '\0')
-	{
-		if (i > 3)
-		{
-			i = 0;
-			col = init_col;
-			row++;
-		}
-		if (*tetri == '.')
-			DO2(i++, col++);
-		CHK(!DOT(map[row][col]) && map[row][col] && !DOT(*tetri),false);
-		CHK1(!map[row][col] && !DOT(*tetri), remove_tetri(map, tetri), false);
-		if (DOT(map[row][col]) && !DOT(*tetri))
-			DO3(map[row][col] = *tetri, col++, i++);
-		tetri++;
-	}
-	return (true);
 }
 
 int		test_place(char **tbl, size_t blocks)
