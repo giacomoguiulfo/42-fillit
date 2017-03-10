@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 09:44:19 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 17:56:48 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/09 18:20:30 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,12 +108,14 @@ char	get_letter(char *str)
 	return (*str);
 }
 
-void remove_tetri(char **map, char ch)
+void	remove_tetri(char **map, char *tetri)
 {
-	size_t row;
-	size_t col;
+	size_t 	row;
+	size_t 	col;
+	char	ch;
 
 	row = 0;
+	ch = get_letter(tetri);
 	while (map[row])
 	{
 		col = 0;
@@ -148,7 +150,7 @@ t_bool	place(char **map, char*tetri, int col, int row)
 		if (*tetri == '.')
 			DO2(i++, col++);
 		CHK(!DOT(map[row][col]) && map[row][col] && !DOT(*tetri),false);
-		CHK1(!map[row][col] && !DOT(*tetri), remove_tetri(map, get_letter(tetri)), false);
+		CHK1(!map[row][col] && !DOT(*tetri), remove_tetri(map, tetri), false);
 		if (DOT(map[row][col]) && !DOT(*tetri))
 			DO3(map[row][col] = *tetri, col++, i++);
 		tetri++;
@@ -191,55 +193,3 @@ int		test_place(char **tbl, size_t blocks)
 	delete_map(map);
 	return (0);
 }
-
-int		solve(char **tbl, size_t blocks)
-{
-	//char	**map;
-	//size_t	map_size;
-	test_place(tbl, blocks);
-
-	//map_size = initial_board_size(blocks);
-	//CHK1((map = new_map(map_size)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
-	/*while (recursion(tbl, map, 0, 0) == false)
-	{
-		map_size++;
-		delete_map(map);
-		CHK1((map = new_map(map_size)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
-		recursion(tbl, map, 0, 0);
-
-	}
-	print_map(map, blocks);
-	delete_map(map);
-	*/
-	/**
-	if (place(map, tbl[4], 26, 0))
-		printf("Placed properly\n");
-	else
-		printf("NOT placed properly\n");
-	if (place(map, tbl[2], 24, 0))
-		printf("Placed properly\n");
-	else
-		printf("NOT placed properly\n");
-	**/
-	return (0);
-}
-
-
-
-/**
-t_bool	recursion(char **tbl, char **map, int row, int col)
-{
-	while (map[row])
-	{
-		while (map[row][col])
-		{
-			if (place(map, *tbl, col, row) == true)
-				solver(tbl + 1, map, 0, 0);
-			col++;
-		}
-		row++;
-	}
-
-
-}
-**/
