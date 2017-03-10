@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 09:44:19 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 21:54:26 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/09 21:59:48 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	print_map(char **map, size_t size)
 	size_t	i;
 
 	i = 0;
-	while (i <= size)
+	while (i < size)
 	{
 		ft_putstr(map[i]);
 		ft_putchar('\n');
