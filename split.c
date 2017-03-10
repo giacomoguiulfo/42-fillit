@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 14:04:46 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 19:14:02 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/10 12:47:17 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	change_end(char **src, int bytes)
 {
 	int		i;
 	char	*ch;
-	
+
 	ch = *src;
 	i = 21;
 	while (i < bytes)
@@ -35,7 +35,7 @@ void	trim_newline(char **src)
 	char	tmp[20];
 
 	i = 0;
-	while(src[i])
+	while (src[i])
 	{
 		j = 0;
 		k = 0;
