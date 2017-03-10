@@ -6,7 +6,7 @@
 /*   By: jkalia <jkalia@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 18:10:56 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 19:22:10 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/09 20:24:27 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_bool	place(char **map, char*tetri, int col, int row)
 
 	init_col = col;
 	i = 0;
+
 	while (*tetri == '.')
 		DO3(i++, tetri++, init_col--);
 	CHK(init_col < 0, false);
@@ -68,24 +69,31 @@ int		solve(char **tbl, size_t blocks)
 {
 	char	**map;
 	size_t	map_size;
+	
+	map_size = 5;
+	//CHK1((map = new_map(map_size)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
 	//test_place(tbl, blocks);
+	
 	map_size = initial_board_size(blocks);
 	CHK1((map = new_map(map_size)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
 
-	while (recursion(tbl, map, 0, 0) == false)
+	printf("Starting Map Size = %zu\n", map_size);
+	while (recursion(tbl, map, 0, 0, blocks) == false)
 	{
 		map_size++;
 		delete_map(map);
 		CHK1((map = new_map(map_size)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
 		printf("Map Size = %zu\n", map_size);
-		recursion(tbl, map, 0, 0);
+		recursion(tbl, map, 0, 0, blocks);
 	}
-	print_map(map, blocks);
+	
+
+	//print_map(map, blocks);
 	delete_map(map);
 	return (0);
 }
 
-t_bool	recursion(char **tbl, char **map, int row, int col)
+t_bool	recursion(char **tbl, char **map, int col, int row, size_t blocks)
 {
 	while (map[row])
 	{
@@ -93,15 +101,16 @@ t_bool	recursion(char **tbl, char **map, int row, int col)
 		{
 			if (place(map, *tbl, col, row) == true)
 			{
-				if (recursion(tbl + 1, map, 0, 0) == false)
+				print_map(map, blocks);
+				if (recursion(tbl + 1, map, 0, 0, blocks) == false)
 					remove_tetri(map, *tbl);
 				else
-					return (false);
+					return (true);
 			}
 			col++;
 		}
 		row++;
 		col = 0;
 	}
-	return (true);
+	return (false);
 }

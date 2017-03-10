@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/08 09:44:19 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 19:19:20 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/09 20:07:46 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,13 @@ void	print_map(char **map, size_t size)
 	size_t	i;
 
 	i = 0;
-	while (i < size)
+	while (i <= size)
 	{
 		ft_putstr(map[i]);
 		ft_putchar('\n');
 		++i;
 	}
+	ft_putchar('\n');
 }
 
 void	reset_map(char **map)
@@ -61,21 +62,21 @@ void	delete_map(char **map)
 
 char	**new_map(size_t size)
 {
-	size_t	i;
-	size_t	j;
-	size_t	n_size;
+	int		i;
+	int		j;
+	int		n_size;
 	char	**map;
 
 	n_size = size + 3;
 	CHK((map = (char **)malloc(sizeof(char*) * (n_size + 1))) == 0, 0);
 	ft_bzero(map, n_size);
 	i = -1;
-	while (++i < size)
+	while (++i < (int)size)
 	{
 		CHK1((map[i] = (char*)malloc(sizeof(char) * (n_size))) == 0, delete_map(map), 0);
 		ft_bzero(map[i], n_size);
 		j = -1;
-		while (++j < size)
+		while (++j < (int)size)
 			map[i][j] = '.';
 	}
 	while (i < n_size)
