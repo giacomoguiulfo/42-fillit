@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:02:04 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 19:14:11 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/09 21:54:46 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,8 +125,7 @@ int		main(int av, char **ac)
 	trim_newline(tbl);
 	CHK3(!valid_pattern(tbl, blocks), error(), ft_tbldel(tbl), free(str), 0);
 	rename_block(tbl);
-	tmp_print(tbl, blocks);
-	printf("\n");
+//	tmp_print(tbl, blocks);
 	solve(tbl, blocks);
 	ft_tbldel(tbl);
 	free(str);

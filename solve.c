@@ -6,7 +6,7 @@
 /*   By: jkalia <jkalia@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 18:10:56 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 20:24:27 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/09 21:53:26 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,32 +77,33 @@ int		solve(char **tbl, size_t blocks)
 	map_size = initial_board_size(blocks);
 	CHK1((map = new_map(map_size)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
 
-	printf("Starting Map Size = %zu\n", map_size);
-	while (recursion(tbl, map, 0, 0, blocks) == false)
+	while (recursion(tbl, map, 0, 0, map_size, 0, blocks) == false)
 	{
 		map_size++;
 		delete_map(map);
 		CHK1((map = new_map(map_size)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
-		printf("Map Size = %zu\n", map_size);
-		recursion(tbl, map, 0, 0, blocks);
+		recursion(tbl, map, 0, 0, map_size, 0, blocks);
 	}
 	
 
-	//print_map(map, blocks);
+	print_map(map, blocks);
 	delete_map(map);
 	return (0);
 }
 
-t_bool	recursion(char **tbl, char **map, int col, int row, size_t blocks)
+t_bool	recursion(char **tbl, char **map, int col, int row, size_t map_size, int i, int limit)
 {
+	if (i == limit)
+		return (true);
+
 	while (map[row])
 	{
 		while (map[row][col])
 		{
 			if (place(map, *tbl, col, row) == true)
 			{
-				print_map(map, blocks);
-				if (recursion(tbl + 1, map, 0, 0, blocks) == false)
+	//			print_map(map, map_size);
+				if (recursion(tbl + 1, map, 0, 0, map_size, i + 1, limit) == false)
 					remove_tetri(map, *tbl);
 				else
 					return (true);
