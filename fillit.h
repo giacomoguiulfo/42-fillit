@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:03:05 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 18:36:37 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/09 19:19:38 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ char	**new_map(size_t size);
 void	print_map(char **map, size_t size);
 t_bool	recursion(char **tbl, char **map, int row, int col);
 void	remove_tetri(char **map, char *tetri);
+char	get_letter(char *str);
 void	rename_block(char **src);
 int		solve(char **tbl, size_t blocks);
 #endif
