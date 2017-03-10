@@ -6,7 +6,7 @@
 /*   By: jkalia <jkalia@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 18:10:56 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 22:12:43 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/10 11:32:19 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,6 @@ int		solve(char **tbl, size_t blocks)
 	
 	map_size = initial_board_size(blocks);
 	CHK1((map = new_map(map_size)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
-
 	while (recursion(tbl, map, 0, 0, map_size, 0, blocks) == false)
 	{
 		map_size++;
@@ -109,7 +108,6 @@ int		solve(char **tbl, size_t blocks)
 		CHK1((map = new_map(map_size)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
 		recursion(tbl, map, 0, 0, map_size, 0, blocks);
 	}
-	
 	print_map(map, map_size);
 	delete_map(map);
 	return (0);
@@ -122,6 +120,7 @@ t_bool	recursion(char **tbl, char **map, int col, int row, size_t map_size, int 
 		print_map(map, map_size);
 		exit(1);
 	}
+
 	while (map[row])
 	{
 		while (map[row][col])
@@ -132,9 +131,7 @@ t_bool	recursion(char **tbl, char **map, int col, int row, size_t map_size, int 
 				if (recursion(tbl + 1, map, 0, 0, map_size, i + 1, limit) == false)
 					remove_tetri(map, *tbl);
 				else
-				{
-					return (true);
-				}
+					return (false);
 			}
 			col++;
 		}

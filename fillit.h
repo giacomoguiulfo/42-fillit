@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:03:05 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 21:47:09 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/10 11:32:27 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@
 typedef enum	e_bool
 {
 	false,
-	true
+	true,
+	end
 }				t_bool;
 
 int		error(void);
