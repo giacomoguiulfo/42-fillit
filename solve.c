@@ -6,46 +6,46 @@
 /*   By: jkalia <jkalia@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 18:10:56 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/10 11:32:19 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/10 12:02:45 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int		test_place(char **tbl, size_t blocks);
-
-void	remove_tetri(char **map, char *tetri)
+void	remove_tetri(char **map, char *tetri, int col, int row)
 {
-	size_t 	row;
-	size_t 	col;
 	char	ch;
+	int		i;
 
-	row = 0;
 	ch = get_letter(tetri);
+	i = 0;
 	while (map[row])
 	{
 		col = 0;
 		while (map[row][col])
 		{
+			if (i == 4)
+				return ;
 			if (map[row][col] == ch)
+			{
+				i++;
 				map[row][col] = '.';
+			}
 			col++;
 		}
 		row++;
 	}
 }
 
-t_bool	place(char **map, char*tetri, int col, int row)
+void	place(char **map, char*tetri, int col, int row)
 {
 	size_t	i;
 	int		init_col;
 
 	init_col = col;
 	i = 0;
-
 	while (*tetri == '.')
 		DO3(i++, tetri++, init_col--);
-	CHK(init_col < 0, false);
 	while (*tetri != '\0')
 	{
 		if (i > 3)
@@ -56,13 +56,10 @@ t_bool	place(char **map, char*tetri, int col, int row)
 		}
 		if (*tetri == '.')
 			DO2(i++, col++);
-		CHK(!DOT(map[row][col]) && map[row][col] && !DOT(*tetri),false);
-		CHK1(!map[row][col] && !DOT(*tetri), remove_tetri(map, tetri), false);
 		if (DOT(map[row][col]) && !DOT(*tetri))
 			DO3(map[row][col] = *tetri, col++, i++);
 		tetri++;
 	}
-	return (true);
 }
 
 t_bool	is_safe(char **map, char*tetri, int col, int row)
@@ -86,7 +83,7 @@ t_bool	is_safe(char **map, char*tetri, int col, int row)
 		if (*tetri == '.')
 			DO2(i++, col++);
 		CHK(!DOT(map[row][col]) && map[row][col] && !DOT(*tetri),false);
-		CHK1(!map[row][col] && !DOT(*tetri), remove_tetri(map, tetri), false);
+		CHK(!map[row][col] && !DOT(*tetri), false);
 		if (DOT(map[row][col]) && !DOT(*tetri))
 			DO2(col++, i++);
 		tetri++;
@@ -115,6 +112,7 @@ int		solve(char **tbl, size_t blocks)
 
 t_bool	recursion(char **tbl, char **map, int col, int row, size_t map_size, int i, int limit)
 {
+	
 	if (i == limit)
 	{
 		print_map(map, map_size);
@@ -129,7 +127,7 @@ t_bool	recursion(char **tbl, char **map, int col, int row, size_t map_size, int 
 			{
 				place(map, *tbl, col, row);
 				if (recursion(tbl + 1, map, 0, 0, map_size, i + 1, limit) == false)
-					remove_tetri(map, *tbl);
+					remove_tetri(map, *tbl, col, row);
 				else
 					return (false);
 			}

@@ -26,13 +26,15 @@ $(LIBFT):
 
 $(NAME): $(LIBFT) $(OBJ)
 	@gcc $(OBJ) $(LIBFT) -o $(NAME)
-	@echo "Compiled Exec"
+	@echo "\033[32mCompiled Executable\033[0m"
 
 clean:
 	@rm -rf $(OBJ)
+	@echo "\033[32mRemoved Object Files\033[0m"
 
 fclean: clean
 	@rm -rf $(NAME)
+	@echo "\033[32mRemoved Executable\033[0m"
 
 re: fclean all
 
@@ -90,7 +92,6 @@ testerror: re
 	./$(NAME) examples/invalid_empty.fillit
 
 testcorr: re
-	./$(NAME) examples/12_hard
 	./$(NAME) examples/ok_00
 	./$(NAME) examples/ok_01
 	./$(NAME) examples/ok_02
@@ -138,11 +139,10 @@ testcorr: re
 	./$(NAME) examples/just_one.fillit
 	./$(NAME) examples/just2.fillit
 	./$(NAME) examples/easy_26.fillit
+	./$(NAME) examples/12_hard
 
 
 testcorr1:
-	@echo "Valid Files"
-	@./$(NAME) examples/12_hard
 	@./$(NAME) examples/ok_00
 	@./$(NAME) examples/ok_01
 	@./$(NAME) examples/ok_02
@@ -190,6 +190,7 @@ testcorr1:
 	@./$(NAME) examples/just_one.fillit
 	@./$(NAME) examples/just2.fillit
 	@./$(NAME) examples/easy_26.fillit
+	@./$(NAME) examples/12_hard
 
 testerror1:
 	@echo "---------------------------ERROR----------------------"
