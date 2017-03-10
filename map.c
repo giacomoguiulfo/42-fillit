@@ -12,6 +12,8 @@
 
 #include "fillit.h"
 
+//#define DOTWO(a, b) do{a; b;}while(0)
+
 void	print_map(char **map, size_t size)
 {
 	size_t	i;
@@ -29,7 +31,7 @@ void	reset_map(char **map)
 {
 	int		i;
 	int		j;
-	
+
 	i = 0;
 	while (map[i])
 	{
@@ -130,55 +132,32 @@ t_bool	place(char **map, char*tetri, int cols, int rows)
 	size_t i;
 	int init_cols;
 	int init_rows;
-	int init_dots;
 
 	init_rows = rows;
 	init_cols = cols;
 	i = 0;
-	init_dots = 0;
 	while (*tetri == '.')
-	{
-		i++;
-		tetri++;
-		init_dots++;
-	}
-	if (init_dots == 1)
-		init_cols--;
+		DO3(i++, tetri++, init_cols--);
 	if (init_cols < 0)
 		return (false);
 	while (*tetri != '\0')
 	{
 		if (i > 3)
+			DO3(i = 0, cols = init_cols, rows++);
+		if (*tetri != '.')
 		{
-			//printf("i > 3\n");
-			i = 0;
-			cols = init_cols;
-			rows++;
-		}
-		else if (*tetri != '.' && map[rows][cols] != '.' && map[rows][cols] != '\0')
-		{
-			return (false);
-		}
-		else if (*tetri != '.' && map[rows][cols] == '\0')
-		{
-			remove_tetri(map ,get_letter(tetri));
-			return (false);
-		}
-		else if (*tetri != '.' && map[rows][cols] == '.')
-		{
-			map[rows][cols] = *tetri;
-			cols++;
-			//printf("Cols++\n");
-			tetri++;
-			i++;
+			if (map[rows][cols] != '.' && map[rows][cols] != '\0')
+				return (false);
+			if (map[rows][cols] == '\0')
+			{
+				remove_tetri(map ,get_letter(tetri));
+				return (false);
+			}
+			if (map[rows][cols] == '.')
+				DO4(map[rows][cols] = *tetri, cols++, tetri++, i++);
 		}
 		else
-		{
-			//printf("else & else\n");
-			i++;
-			cols++;
-			tetri++;
-		}
+			DO3(i++, cols++, tetri++);
 	}
 	return (true);
 }
@@ -189,7 +168,7 @@ int		test_place(char **tbl, size_t blocks)
 	int		j;
 	size_t	k;
 	char	**map;
-	
+
 	CHK1((map = new_map(6)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
 	k = 0;
 	while (k < blocks)
@@ -221,23 +200,23 @@ int		test_place(char **tbl, size_t blocks)
 
 int		solve(char **tbl, size_t blocks)
 {
-	char	**map;
-	size_t	map_size;
-	//test_place(tbl, blocks);
+	//char	**map;
+	//size_t	map_size;
+	test_place(tbl, blocks);
 
-	map_size = initial_board_size(blocks);
-	CHK1((map = new_map(map_size)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
-	while (recursion(tbl, map, 0, 0) == false)
+	//map_size = initial_board_size(blocks);
+	//CHK1((map = new_map(map_size)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
+	/*while (recursion(tbl, map, 0, 0) == false)
 	{
 		map_size++;
 		delete_map(map);
 		CHK1((map = new_map(map_size)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
 		recursion(tbl, map, 0, 0);
-		
+
 	}
 	print_map(map, blocks);
 	delete_map(map);
-
+	*/
 	/**
 	if (place(map, tbl[4], 26, 0))
 		printf("Placed properly\n");
@@ -253,7 +232,7 @@ int		solve(char **tbl, size_t blocks)
 
 
 
-
+/**
 t_bool	recursion(char **tbl, char **map, int row, int col)
 {
 	while (map[row])
@@ -269,3 +248,4 @@ t_bool	recursion(char **tbl, char **map, int row, int col)
 
 
 }
+**/

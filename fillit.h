@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:03:05 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 11:00:18 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/09 16:36:18 by gguiulfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,12 @@
 # define V1(a) (a == '#' || a == '.')
 # define V2(a) (a == '\n')
 # define V3(a) (a == '#' || a == '.' || a == '\n')
+# define NOTEMPTY(a) (a == '\0' || a == '.')
+# define DOT(a) (a == '.')
+# define V6(a) (a == '\0')
+# define DO2(a, b) if(1){a; b;}
+# define DO3(a, b, c) if(1){a; b; c;}
+# define DO4(a, b, c, d) if(1){a; b; c; d;}
 
 typedef enum	e_bool
 {
