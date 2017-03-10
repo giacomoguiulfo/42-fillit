@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:03:05 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 20:14:23 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/09 21:31:56 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@
 typedef enum	e_bool
 {
 	false,
-	true
+	true,
+	end
 }				t_bool;
 
 int		error(void);
@@ -42,7 +43,7 @@ size_t	initial_board_size(size_t nb_blocks);
 void	delete_map(char **map);
 char	**new_map(size_t size);
 void	print_map(char **map, size_t size);
-t_bool	recursion(char **tbl, char **map, int row, int col, size_t blocks);
+t_bool	recursion(char **tbl, char **map, int row, int col, size_t blocks, int i, int limit);
 void	remove_tetri(char **map, char *tetri);
 char	get_letter(char *str);
 void	rename_block(char **src);
