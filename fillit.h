@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:03:05 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/10 12:39:08 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/10 12:52:30 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ typedef enum	e_bool
 	end
 }				t_bool;
 
-int		error(void);
+void	error(void);
 void	change_end(char **src, int bytes);
 void	trim_newline(char **src);
 t_bool	valid_pattern(char **src, int blocks);

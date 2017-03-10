@@ -6,7 +6,7 @@
 /*   By: jkalia <jkalia@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 18:10:56 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/10 12:39:35 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/10 12:55:10 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,12 +97,12 @@ int		solve(char **tbl, size_t blocks)
 	size_t	map_size;
 
 	map_size = initial_board_size(blocks);
-	CHK1((map = new_map(map_size)) == 0, ft_putstr("error\n"), 0);
+	CHK1((map = new_map(map_size)) == 0, error(), 0);
 	while (recursion(tbl, map, 0, 0) == false)
 	{
 		map_size++;
 		delete_map(map);
-		CHK1((map = new_map(map_size)) == 0, ft_putstr("error\n"), 0);
+		CHK1((map = new_map(map_size)) == 0, error(), 0);
 	}
 	print_map(map, map_size);
 	delete_map(map);

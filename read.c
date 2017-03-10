@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:02:04 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 21:54:46 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/10 12:55:15 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@
 
 extern int g_malloc_inject;
 
-int		error()
+void	error(void)
 {
 	ft_putstr("error\n");
-	return (0);
 }
 
 t_bool	valid_1(char *str, int bytes)
@@ -93,14 +92,6 @@ t_bool	valid_0(char *str, int bytes)
 	return (true);
 }
 
-void	tmp_print(char **tbl, int blocks)
-{
-	int i;
-	i = -1;
-	while (++i <  blocks)
-		printf("%s\n", tbl[i]);
-}
-
 int		main(int av, char **ac)
 {
 	size_t	fd;
@@ -109,12 +100,8 @@ int		main(int av, char **ac)
 	char	**tbl;
 	size_t	blocks;
 
-//	g_malloc_inject = 50;
-
 	CHK1(av != 2, ft_putstr("usage: ./fillit source_file\n"), 0);
-	CHK1((str = (char*)malloc(sizeof(char) * BUFFER_SIZE)) == NULL,
-	ft_putstr("error\n"), 0);
-	ft_bzero((void *)str, BUFFER_SIZE);
+	CHK1((str = ft_strnew(BUFFER_SIZE)) == NULL, error(), 0);
 	CHK2((fd = open(ac[1], O_RDONLY, S_IRUSR)) == -1, free(str), error(), 0);
 	CHK2((rd = read(fd, str, BUFFER_SIZE)) < 0, error(), free(str), 0);
 	CHK2(str[545] != 0, error(), free(str), 0);
@@ -125,7 +112,6 @@ int		main(int av, char **ac)
 	trim_newline(tbl);
 	CHK3(!valid_pattern(tbl, blocks), error(), ft_tbldel(tbl), free(str), 0);
 	rename_block(tbl);
-//	tmp_print(tbl, blocks);
 	solve(tbl, blocks);
 	ft_tbldel(tbl);
 	free(str);
