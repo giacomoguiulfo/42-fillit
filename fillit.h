@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:03:05 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/10 11:47:59 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/10 12:34:34 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ size_t	initial_board_size(size_t nb_blocks);
 void	delete_map(char **map);
 char	**new_map(size_t size);
 void	print_map(char **map, size_t size);
-t_bool	recursion(char **tbl, char **map, int col, int row, size_t blocks, int i, int limit);
+t_bool	recursion(char **tbl, char **map, int col, int row);
 void	remove_tetri(char **map, char *tetri, int col, int row);
 char	get_letter(char *str);
 void	rename_block(char **src);

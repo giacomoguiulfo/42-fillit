@@ -6,7 +6,7 @@
 /*   By: jkalia <jkalia@student.42.us.org>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/09 18:10:56 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/10 12:02:45 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/10 12:36:37 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	remove_tetri(char **map, char *tetri, int col, int row)
 	}
 }
 
-void	place(char **map, char*tetri, int col, int row)
+void	place(char **map, char *tetri, int col, int row)
 {
 	size_t	i;
 	int		init_col;
@@ -62,7 +62,7 @@ void	place(char **map, char*tetri, int col, int row)
 	}
 }
 
-t_bool	is_safe(char **map, char*tetri, int col, int row)
+t_bool	is_safe(char **map, char *tetri, int col, int row)
 {
 	size_t	i;
 	int		init_col;
@@ -82,7 +82,7 @@ t_bool	is_safe(char **map, char*tetri, int col, int row)
 		}
 		if (*tetri == '.')
 			DO2(i++, col++);
-		CHK(!DOT(map[row][col]) && map[row][col] && !DOT(*tetri),false);
+		CHK(!DOT(map[row][col]) && map[row][col] && !DOT(*tetri), false);
 		CHK(!map[row][col] && !DOT(*tetri), false);
 		if (DOT(map[row][col]) && !DOT(*tetri))
 			DO2(col++, i++);
@@ -95,30 +95,24 @@ int		solve(char **tbl, size_t blocks)
 {
 	char	**map;
 	size_t	map_size;
-	
+
 	map_size = initial_board_size(blocks);
-	CHK1((map = new_map(map_size)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
-	while (recursion(tbl, map, 0, 0, map_size, 0, blocks) == false)
+	CHK1((map = new_map(map_size)) == 0, ft_putstr("error\n"), 0);
+	while (recursion(tbl, map, 0, 0) == false)
 	{
 		map_size++;
 		delete_map(map);
-		CHK1((map = new_map(map_size)) == 0, ft_putstr("Error in Map Allocation\n"), 0);
-		recursion(tbl, map, 0, 0, map_size, 0, blocks);
+		CHK1((map = new_map(map_size)) == 0, ft_putstr("error\n"), 0);
 	}
 	print_map(map, map_size);
 	delete_map(map);
 	return (0);
 }
 
-t_bool	recursion(char **tbl, char **map, int col, int row, size_t map_size, int i, int limit)
+t_bool	recursion(char **tbl, char **map, int col, int row)
 {
-	
-	if (i == limit)
-	{
-		print_map(map, map_size);
-		exit(1);
-	}
-
+	if (!*tbl)
+		return (true);
 	while (map[row])
 	{
 		while (map[row][col])
@@ -126,10 +120,10 @@ t_bool	recursion(char **tbl, char **map, int col, int row, size_t map_size, int 
 			if (is_safe(map, *tbl, col, row) == true)
 			{
 				place(map, *tbl, col, row);
-				if (recursion(tbl + 1, map, 0, 0, map_size, i + 1, limit) == false)
-					remove_tetri(map, *tbl, col, row);
+				if (recursion(tbl + 1, map, 0, 0) == true)
+					return (true);
 				else
-					return (false);
+					remove_tetri(map, *tbl, col, row);
 			}
 			col++;
 		}
