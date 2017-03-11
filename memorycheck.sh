@@ -1,3 +1,3 @@
 #!/bin/bash
-make testverbose &> output
+make quicktest &> output
 cat output | grep -E 'Exec|FAIL'
