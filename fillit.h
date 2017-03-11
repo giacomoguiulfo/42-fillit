@@ -6,14 +6,13 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:03:05 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/10 12:56:40 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/11 10:15:53 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FILLIT_H
 # define FILLIT_H
 
-# include <stdio.h>
 # include "libft.h"
 # include <stdlib.h>
 # define BUFFER_SIZE 546
@@ -23,7 +22,6 @@
 # define DOT(a) (a == '.')
 # define DO2(a, b) do{a; b;}while(0)
 # define DO3(a, b, c) do{a; b; c;}while(0)
-# define DO4(a, b, c, d) do{a; b; c; d;}while(0)
 
 typedef enum	e_bool
 {
