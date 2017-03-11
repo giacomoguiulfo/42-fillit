@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:02:04 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/10 12:56:42 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/10 20:53:18 by gguiulfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,16 @@ int		main(int av, char **ac)
 	CHK1(av != 2, ft_putstr("usage: ./fillit source_file\n"), 0);
 	CHK1((str = ft_strnew(BUFFER_SIZE)) == NULL, error(), 0);
 	CHK2((fd = open(ac[1], O_RDONLY, S_IRUSR)) == -1, free(str), error(), 0);
-	CHK2((rd = read(fd, str, BUFFER_SIZE)) < 0, error(), free(str), 0);
-	CHK2(str[545] != 0, error(), free(str), 0);
-	CHK2(!valid_0(str, rd), error(), free(str), 0);
+	CHK3((rd = read(fd, str, BUFFER_SIZE)) < 0, error(), free(str),
+															close(fd), 0);
+	CHK3(str[545] != 0, error(), free(str), close(fd), 0);
+	CHK3(!valid_0(str, rd), error(), free(str), close(fd), 0);
 	blocks = (rd + 1) / 21;
 	change_end(&str, rd);
-	CHK2((tbl = ft_strsplit(str, '@')) == 0, error(), free(str), 0);
+	CHK3((tbl = ft_strsplit(str, '@')) == 0, error(), free(str), close(fd), 0);
 	trim_newline(tbl);
-	CHK3(!valid_pattern(tbl, blocks), error(), ft_tbldel(tbl), free(str), 0);
+	CHK4(!valid_pattern(tbl, blocks), error(), ft_tbldel(tbl), free(str),
+																close(fd), 0);
 	rename_block(tbl);
 	solve(tbl, blocks);
 	ft_tbldel(tbl);
