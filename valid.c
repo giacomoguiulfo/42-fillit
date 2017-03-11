@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/06 13:27:17 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/09 10:57:40 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/10 16:53:11 by gguiulfo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	populate_valid(int i, char valid[20][15])
 	ft_strcpy(valid[13], "#...##...#");
 	ft_strcpy(valid[14], "##..##");
 	ft_strcpy(valid[15], "#...#...#...#");
-	ft_strcpy(valid[16], "####"),
+	ft_strcpy(valid[16], "####");
 	ft_strcpy(valid[17], ".#..##..#");
 	ft_strcpy(valid[18], "##...##");
 }
