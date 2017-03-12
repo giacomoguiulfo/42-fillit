@@ -13,7 +13,7 @@ OBJ = $(SRC:.c=.o)
 
 LIBFT = libft/libft.a
 
-.PHONY = all clean
+.PHONY = all clean fclean re
 
 all: $(NAME)
 
