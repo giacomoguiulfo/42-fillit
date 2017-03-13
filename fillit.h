@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:03:05 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/12 11:21:08 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/12 21:29:16 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,4 +35,10 @@ t_bool			recursion(char **tbl, char **map, int col, int row);
 char			get_letter(char *str);
 void			rename_block(char **src);
 int				solve(char **tbl, size_t blocks);
+
+typedef enum	e_bool
+{
+	false,
+	true
+}				t_bool;
 #endif
