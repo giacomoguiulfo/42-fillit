@@ -62,7 +62,7 @@ HF.GGE.
 HHGGIII
 .H...I.
 ```
-Look how easy it is to use:
+How to use:
 
     git clone https://github.com/JibranKalia/fillit.git
     choose a map from examples folder
