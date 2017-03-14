@@ -72,3 +72,8 @@ Features
 --------
 
 - Implements error checking to detect invalid tetriminons. 
+
+Official Team
+--------
+This project was developed jointly by Jibran Kalia @jibrankalia and Giacomo Guiulfo @giacomoguiulfo.
+
