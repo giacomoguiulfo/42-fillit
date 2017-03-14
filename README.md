@@ -3,7 +3,8 @@ FILLIT
 
 Fillit is a recursive backtracking that fits a set of Tetriminos in the smallest possible square without rotatiting the Tetriminos. 
 
-Here is an example of valid map of Tetriminos which the code fits in the following square:
+Here is an example of valid map of Tetriminos (maximum of 26 blocks) which the code fits in the following square:
+
 ```
 ....
 .##.
@@ -51,7 +52,7 @@ Here is an example of valid map of Tetriminos which the code fits in the followi
 ....
 ```
 
-Solution:
+Solution (each individual tetriminos renamed starting from A):
 ```
 AAB.CCD
 AABCCDD
@@ -61,38 +62,18 @@ HF.GGE.
 HHGGIII
 .H...I.
 ```
-Look how easy it is to use:
+How to use:
 
-    import project
-    # Get your stuff done
-    project.do_stuff()
+    git clone https://github.com/JibranKalia/fillit.git
+    choose a map from examples folder
+    ./fillit examples/ok_09_block
 
 Features
 --------
 
-- Be awesome
-- Make things faster
+- Implements error checking to detect invalid tetriminons. 
 
-Installation
-------------
+Official Team
+--------
+This project was developed jointly by Jibran Kalia [@jibrankalia](https://github.com/JibranKalia) and Giacomo Guiulfo [@giacomoguiulfo](https://github.com/giacomoguiulfo).
 
-Install $project by running:
-
-    install project
-
-Contribute
-----------
-
-- Issue Tracker: github.com/$project/$project/issues
-- Source Code: github.com/$project/$project
-
-Support
--------
-
-If you are having issues, please let us know.
-We have a mailing list located at: project@google-groups.com
-
-License
--------
-
-The project is licensed under the BSD license.
