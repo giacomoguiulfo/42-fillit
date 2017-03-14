@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:03:05 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/12 21:29:16 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/12 21:31:06 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 # define DO2(a, b) if(1){a; b;}
 # define DO3(a, b, c) if(1){a; b; c;}
 
+typedef enum	e_bool
+{
+	false,
+	true
+}				t_bool;
+
 void			error(void);
 void			change_end(char **src, int bytes);
 void			trim_newline(char **src);
@@ -36,9 +42,4 @@ char			get_letter(char *str);
 void			rename_block(char **src);
 int				solve(char **tbl, size_t blocks);
 
-typedef enum	e_bool
-{
-	false,
-	true
-}				t_bool;
 #endif
