@@ -75,5 +75,5 @@ Features
 
 Official Team
 --------
-This project was developed jointly by Jibran Kalia https://github.com/JibranKalia and Giacomo Guiulfo @giacomoguiulfo.
+This project was developed jointly by Jibran Kalia [@jibrankalia](https://github.com/JibranKalia) and Giacomo Guiulfo [@giacomoguiulfo](https://github.com/giacomoguiulfo).
 
