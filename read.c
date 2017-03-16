@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:02:04 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/12 11:22:11 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/15 14:10:50 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,8 @@ t_bool	valid_2(char *str, int bytes)
 t_bool	valid_0(char *str, int bytes)
 {
 	bytes++;
+	if (str[0] != '.' && str[0] != '#')
+		return (false);
 	if (valid_1(str, bytes) == false)
 		return (false);
 	if (valid_2(str, bytes) == false)
@@ -103,18 +105,17 @@ int		main(int av, char **ac)
 	CHK2((fd = open(ac[1], O_RDONLY, S_IRUSR)) == -1, free(str), error(), 0);
 	CHK3((rd = read(fd, str, BUFFER_SIZE)) < 0, error(), free(str),
 															close(fd), 0);
-	CHK3(str[545] != 0, error(), free(str), close(fd), 0);
-	CHK3(!valid_0(str, rd), error(), free(str), close(fd), 0);
+	close(fd);
+	CHK2(str[545] != 0, error(), free(str), 0);
+	CHK2(!valid_0(str, rd), error(), free(str), 0);
 	blocks = (rd + 1) / 21;
 	change_end(&str, rd);
-	CHK3((tbl = ft_strsplit(str, '@')) == 0, error(), free(str), close(fd), 0);
+	CHK2((tbl = ft_strsplit(str, '@')) == 0, error(), free(str), 0);
 	trim_newline(tbl);
-	CHK4(!valid_pattern(tbl, blocks), error(), ft_tbldel(tbl), free(str),
-																close(fd), 0);
+	CHK3(!valid_pattern(tbl, blocks), error(), ft_tbldel(tbl), free(str), 0);
 	rename_block(tbl);
 	solve(tbl, blocks);
 	ft_tbldel(tbl);
 	free(str);
-	close(fd);
 	return (0);
 }
