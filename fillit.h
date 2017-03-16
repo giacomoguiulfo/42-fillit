@@ -6,7 +6,7 @@
 /*   By: jkalia <marvin@42.fr>                      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/03/05 12:03:05 by jkalia            #+#    #+#             */
-/*   Updated: 2017/03/12 11:21:08 by jkalia           ###   ########.fr       */
+/*   Updated: 2017/03/16 10:39:26 by jkalia           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,12 @@
 # define DOT(a) (a == '.')
 # define DO2(a, b) if(1){a; b;}
 # define DO3(a, b, c) if(1){a; b; c;}
+
+typedef	enum	e_bool
+{
+	false,
+	true
+}				t_bool;
 
 void			error(void);
 void			change_end(char **src, int bytes);
