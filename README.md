@@ -64,7 +64,7 @@ HHGGIII
 ```
 How to use:
 
-    git clone https://github.com/JibranKalia/fillit.git
+    git clone --recursive https://github.com/JibranKalia/fillit.git
     choose a map from examples folder
     ./fillit examples/ok_09_block
 
