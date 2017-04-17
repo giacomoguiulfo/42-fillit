@@ -1,4 +1,4 @@
-FILLIT
+Fillit
 ========
 ### 42 - Project #2
 
